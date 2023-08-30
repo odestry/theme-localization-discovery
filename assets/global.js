@@ -8,7 +8,7 @@ async function getLocalizationSuggestion() {
   }));
 
   return {
-    detected_country: detected_values.country_name,
+    detected_country: detected_values.country,
     suggestions: mapped_suggestions,
   };
 }
@@ -26,11 +26,19 @@ function updateLocalization({country, language}) {
   document.getElementById(formId).submit();
 }
 
+function updateRedirectLink ({ country }) {
+  const redirectLink = document.querySelector('.localization-button');
+  if (!redirectLink) return;
+  redirectLink.textContent = `Shop ${country} store`
+  // TODO: update the link to redirect to the correct country and language
+}
+
 async function showLocalizationSuggestion() {
   const { detected_country } = await getLocalizationSuggestion()
 
   if (detected_country) {
-    document.querySelector('.localization-suggestion').textContent = `Shopify detected you are in ${detected_country}.`
+    document.querySelector('.localization-suggestion').textContent = `Shopify detected you are in ${detected_country.name}.`
+    updateRedirectLink({ country: detected_country.name })
   }
 }
 

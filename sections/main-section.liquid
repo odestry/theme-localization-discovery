@@ -4,13 +4,17 @@
   <div class="container mx-auto px-4 flex flex-col items-start gap-4 md:gap-5">
     {% liquid
       assign image = section.settings.image | default: page_image
-      render 'image' with image, class: 'h-[75vh] lg:h-[40rem]', preload: true
+      render 'image' with image, class: 'h-[70vh] lg:h-[40rem]', preload: true
     %}
-    <div class="flex flex-col gap-4 lg:gap-5 absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center justify-center w-full px-8">
+    <div class="flex flex-col gap-4 lg:gap-5 absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center items-center w-full px-8">
       <h1 class="scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
         {{ section.settings.heading }}
       </h1>
       <p class="[no-js>&]:hidden text-2xl text-black localization-suggestion"></p>
+      <a
+        href="{{ routes.root_url }}"
+        class="[no-js>&]:hidden empty:hidden inline-flex items-center justify-center rounded-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 px-8 h-12 text-white bg-black w-fit localization-button">
+      </a>
     </div>
   </div>
 </section>
@@ -29,12 +33,6 @@
       "id": "heading",
       "label": "Heading",
       "default": "Native Shopify localization discovery"
-    },
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Text",
-      "default": "Shopify just detected that you are located in"
     },
     {
       "type": "range",
