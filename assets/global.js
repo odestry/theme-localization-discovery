@@ -37,7 +37,7 @@ async function showLocalizationSuggestion() {
   const { detected_country } = await getLocalizationSuggestion()
 
   if (detected_country) {
-    document.querySelector('.localization-suggestion').textContent = `Shopify detected you are in ${detected_country.name}.`
+    document.querySelector('.localization-suggestion').innerHTML = `Shopify detected you are in <span class="font-semibold">${detected_country.name}</span>.`
     updateRedirectLink({ country: detected_country.name })
   }
 }
